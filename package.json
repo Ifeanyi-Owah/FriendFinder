@@ -1,0 +1,26 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "friendfinder",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ifeanyi-Owah/FriendFinder.git"
+  },
+  "author": "ify",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ifeanyi-Owah/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/Ifeanyi-Owah/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
