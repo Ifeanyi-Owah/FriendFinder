@@ -11,6 +11,9 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+  <style>
+    
+  </style>
 </head>
 <body>
     
@@ -152,7 +155,28 @@
       <button type="submit" class="btn btn-success btn-lg btn-block" id="submit"><i class="fa fa-check"></i>
         Submit</button>
     </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="friendModalLabel">Anne Hattaway</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="http://www.gstatic.com/tv/thumb/persons/205765/205765_v9_bb.jpg" class="img-fluid" alt="friend best match photo">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
    </div>
+  
    <script>
         var submitBtn = document.querySelector("#submit");
 
@@ -180,11 +204,10 @@
           });
             return validInputData;
         }
-       });
-
-         var user = {
-          name: document.querySelector("name"),
-          photo: document.querySelector("#photo"),
+        if(formValidation() && dataValidation()){
+            var user = {
+          name: document.querySelector("#name").value,
+          photo: document.querySelector("#photo").value,
           scores: [
             document.querySelector("#a1").value,
             document.querySelector("#a2").value,
@@ -198,17 +221,19 @@
             document.querySelector("#a10").value,
            ]
         };
-
-        console.log(user.scores[9])
-       
-   
       
+        // console.log(user);
+        $.post('/friends', user, function(data){
+            //display modal using data data.name
+            document.querySelector('#friendModalLabel').textContent = data.name;
+            document.querySelector('.img-fluid').setAttribute('src',data.photo);
+            $('#friendModal').modal();
+            alert('submitted sucessfully');
+            // console.log(data);
+      });
 
-     
-
-    
-      
-   
-   </script>
+        }
+    });
+        </script>
 </body>
 </html>
